@@ -1,4 +1,4 @@
-class Sapiens {
+class Idiot {
 	speak(emotion: string) {
 		console.log(`Я испытываю ${emotion}.`)
 	}
