@@ -35,7 +35,7 @@ class Factory {
 		football: FootballPublisher,
 		tennis: TennisPublisher
 	}
-	createArticle(name: string, sport: string = 'football') {
+	createArticle(name: string, sport: string = 'football'): Publisher {
 		const sportClass = Factory.sports[sport] || Factory.sports['football'];
 		let article = new sportClass(name);
 		return article
