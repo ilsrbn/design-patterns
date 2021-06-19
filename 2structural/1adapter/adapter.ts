@@ -15,11 +15,12 @@ class HomoSapiens {
 
 
 class evolutionAdapter {
+	speaker = new HomoSapiens()
 	speak(emotion: string) {
 		if (emotion === 'счастье') {
-			new HomoSapiens().happySpeech()
+			this.speaker.happySpeech()
 		} else if (emotion === 'грусть') {
-			new HomoSapiens().sadSpeech()
+			this.speaker.sadSpeech()
 		}
 	}
 }
