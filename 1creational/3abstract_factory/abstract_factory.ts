@@ -1,84 +1,76 @@
-interface AbstractFactory {
-	createPhone(model: string): Phone
-	createCharger(): Charger
+interface CarsFactory {
+	createSedan(): Sedan;
+	createCoupe(): Coupe;
 }
 
-class AppleFactory implements AbstractFactory {
-	createPhone(model: string): Phone {
-		return new IPhone(model)
+class ToyotaFactory implements CarsFactory {
+	createSedan(): Sedan {
+		return new ToyotaSedan()
 	}
-	createCharger(): Charger {
-		return new Lightning()
-	}
-}
 
-class HuaweiFactory implements AbstractFactory {
-	createPhone(model: string): Phone {
-		return new HuaweiPhone(model)
-	}
-	createCharger(): Charger {
-		return new TypeC()
+	createCoupe(): Coupe {
+		return new ToyotaCoupe()
 	}
 }
 
-interface Phone {
-	model: string
-	makeCall(number: number | string): void
-}
-
-interface Charger {
-	charge(phone: Phone): void
-}
-
-class IPhone implements Phone {
-	model: string = 'IPhone '
-	makeCall(number: number | string): void {
-		console.log(`Calling ${number}. Please Wait...`)
+class FordFactory implements CarsFactory {
+	createSedan(): Sedan {
+		return new FordSedan()
 	}
 
-	constructor(model: string) {
-		this.model = this.model + model
+	createCoupe(): Coupe {
+		return new FordCoupe()
 	}
 }
 
-class Lightning implements Charger {
-	charge(phone: Phone): void {
-		console.log(`${phone.model} is charging...`)
-	}
+abstract class Sedan {
+	type: string = 'sedan'
+
+	wheelPos: string
+
 }
 
+abstract class Coupe {
+	type: string = 'coupe'
 
-class HuaweiPhone implements Phone {
-	model: string = 'Huawei '
-	makeCall(number: number | string): void {
-		console.log(`You are calling abonent with number ${number}. Wait for a moment...`)
-	}
+	wheelPos: string
 
-	constructor(model: string) {
-		this.model = this.model + model
-	}
 }
 
-class TypeC implements Charger {
-	charge(phone: Phone): void {
-		console.log(`Your beautiful ${phone.model} is charging now...`)
-	}
+class ToyotaSedan extends Sedan {
+
+	wheelPos: string = 'right'
 }
 
+class ToyotaCoupe extends Coupe {
 
-let apple = new AppleFactory()
+	wheelPos: string = 'right'
+}
 
-let iphone = apple.createPhone('X')
-let iphonecharger = apple.createCharger()
+class FordSedan extends Sedan {
 
-iphone.makeCall(34532667)
-iphonecharger.charge(iphone)
+	wheelPos: string = 'left'
+}
 
+class FordCoupe extends Coupe {
 
-let huawei = new HuaweiFactory()
+	wheelPos: string = 'left'
+}
 
-let android = huawei.createPhone('P40')
-let typec = huawei.createCharger()
+let factory = new ToyotaFactory()
 
-android.makeCall('+4123578')
-typec.charge(android)
+let vehicle1 = factory.createSedan()
+
+let vehicle2 = factory.createCoupe()
+
+console.log(vehicle1)
+console.log(vehicle2)
+
+let factory2 = new FordFactory()
+
+let vehicle3 = factory2.createSedan()
+
+let vehicle4 = factory2.createCoupe()
+
+console.log(vehicle3)
+console.log(vehicle4)

@@ -19,3 +19,40 @@ abstract class Component {
 
     abstract operation(): string;
 }
+
+class Leaf extends Component {
+    operation(): string {
+        return 'Leaf'
+    }
+}
+
+class Composite extends Component {
+    children: Component[] = [];
+
+    add(component: Component): void {
+        this.children.push(component)
+        component.setParent(this)
+    }
+
+    remove(component: Component): void {
+        const componentIndex = this.children.indexOf(component)
+        this.children.splice(componentIndex, 1)
+
+        component.setParent(null)
+    }
+
+    isComposite(): boolean {
+        return true
+    }
+
+    operation(): string {
+        const results = [];
+        for (const child of this.children) {
+            results.push(child.operation())
+        }
+
+        return `Branch(${results.join('+')})`
+    }
+}
+
+
