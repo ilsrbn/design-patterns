@@ -13,7 +13,7 @@ class Delivery implements Order {
 }
 
 class Product1 implements Order {
-	order: Order
+	private order: Order
 
 	constructor(past: Order) {
 		this.order = past
@@ -31,7 +31,7 @@ class Product1 implements Order {
 }
 
 class Product2 implements Order {
-	order: Order
+	private order: Order
 
 	constructor(past: Order) {
 		this.order = past
