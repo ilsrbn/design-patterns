@@ -24,7 +24,7 @@ class Editor {
 		return new EditorMemento(this.content)
 	}
 
-	restore(moment: EditorMemento) {
+	restore(moment: EditorMemento):void {
 		this.content = moment.getContent()
 	}
 }

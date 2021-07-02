@@ -27,7 +27,7 @@ class ConcreteMediator implements Mediator {
 	}
 }
 
-class BaseComponent {
+abstract class BaseComponent {
 	protected mediator: Mediator
 
 	constructor(mediator: Mediator = null) {
